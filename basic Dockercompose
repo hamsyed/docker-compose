@@ -1,0 +1,16 @@
+version: "3"
+services:
+  nginx:
+    build: .
+    ports:
+      - 8000:80
+    networks:
+      - nginx01
+    volumes:
+      - vol1:/myapp
+
+networks:
+  nginx01:
+volumes:
+  vol1:
+
