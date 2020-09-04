@@ -1,0 +1,17 @@
+FROM ubuntu:18.04
+LABEL Email="syed.hameed.uddin@gmail.com"
+RUN apt update &&\
+    apt install nano wget curl unzip -y &&\
+    apt install iputils-ping -y &&\
+    apt install nginx -y &&\
+    useradd testuser  &&\
+    mkdir myvol
+WORKDIR /myapp
+ADD https://github.com/hamsyed/myapp.git  /myapp
+COPY script1.sh  /myapp
+EXPOSE 80 8000 7000
+RUN touch /myapp/ip1 /myapp/ip2 /myapp/ip3 /myapp/ip4 /myapp/ip5
+RUN chmod -R 777 /myapp/ip*
+CMD bash /myapp/script1.sh
+VOLUME /myvol
+USER testuser
